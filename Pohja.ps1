@@ -1,11 +1,11 @@
 function <<Esittelyfunktio>> # Julkinen funktio --> komentosovelma
 { # funktiomääritysten alku
-[CmdletBinding()] # Laajennettuparametrimäärittely
-param
-( # parametriluettelon alku
+  [CmdletBinding()] # Laajennettuparametrimäärittely
+  param
+  ( # parametriluettelon alku
     [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
     [String]$Parametri1 # parametri on määritelty merkkijonoksi
-) # parametriluettelon loppu
+  ) # parametriluettelon loppu
 BEGIN # Aloituslohko, jossa työfunktio määritellään
     { # Begin-lohkon alku
         function <<Työfunktio>> # Työfunktion määrittely, yksityinen (private)
