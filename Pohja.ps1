@@ -1,4 +1,4 @@
-﻿Function <<Esittelyfunktio>> # Julkinen funktio --> komentosovelma
+function <<Esittelyfunktio>> # Julkinen funktio --> komentosovelma
 { # funktiomääritysten alku
 [CmdletBinding()] # Laajennettuparametrimäärittely
 param
@@ -14,7 +14,7 @@ BEGIN # Aloituslohko, jossa työfunktio määritellään
           $Tulosvektori = @()
           #Tehdään jotakin...
           $Tulosvektori += $TulosObjekti # Lisätään tulosobjekti tulosvektoriin
-          Write-Output $Tulosvektori # palautetaan työfunktion muodostama objekti
+          Write-Output $Tulosvektori # palautetaan työfunktion muodostamat objektit
         } # työfunktiomääritysten loppu
     } # Begin-lohkon loppu
 
