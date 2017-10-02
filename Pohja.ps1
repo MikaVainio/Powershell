@@ -1,3 +1,4 @@
+# Yksinkertainen malli komentosovelman funktioiden määrittelyyn 
 function <<Esittelyfunktio>> # Julkinen funktio --> komentosovelma
 { # funktiomääritysten alku
   [CmdletBinding()] # Laajennettuparametrimäärittely
