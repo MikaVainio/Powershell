@@ -1,4 +1,5 @@
 ﻿# Luetaan koneen kaikkien levyjen vapaa tila (MB)
+ # Vaatii vähintään Powershell version 5.0
 class LooginenLevy
 {
     [String]$Levyosio
