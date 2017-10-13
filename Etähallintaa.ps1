@@ -1,6 +1,6 @@
 ﻿# Komentoja Powershell-etähallinan aktivointiin ja asetusten tarkasteluun
 # Selvitetään onko Windows Remote Managemet -palvelu käynnissä
-$WrmTila = Get-Service winrma
+$WrmTila = Get-Service winrm
 $WrmTila.Status
 # Selvitetään nykyiset asetukset, kysely käynnistää palvelun
 $PSRemoteasetukset = Get-PSSessionConfiguration
