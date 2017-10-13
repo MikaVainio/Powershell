@@ -12,6 +12,6 @@ Enable-PSRemoting -SkipNetworkProfileCheck
 # PowerShell-etähallinnan käyttöönotto mistä tahansa julkisen verkon IP-osoitteesta (LAN ja WAN)
 # Asetus on VAARALLINEN, poista heti käytön jälkeen.
 Set-NetFirewallRule -Name "WINRM-HTTP-In-PUBLIC" -RemoteAddress Any
-# Käyttäjätietojen välittäminen etäkomennolle
+# Kirjautumistietojen välittäminen etäkomennolle
 $Käyttäjä = Get-Credential
 Get-ADUser -filter * -Credential $Käyttäjä -Server "DC01"
