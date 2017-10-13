@@ -7,9 +7,10 @@ $PSRemoteasetukset = Get-PSSessionConfiguration
 $PSRemoteasetukset | Out-GridView
 # Otetaan PowerShell-etähallinta käyttöön ja tehdään tarvittavat palomuuriasetukset ilman vahvistusta
 Enable-PSRemoting -Force
-# Otetaan PowerShell-etähallinta käyttöön myös julkisissa verkoissa (LAN)
+# Otetaan PowerShell-etähallinta käyttöön myös julkisissa verkoissa (LAN) VAARALLINEN asetus
 Enable-PSRemoting -SkipNetworkProfileCheck
 # PowerShell-etähallinnan käyttöönotto mistä tahansa julkisen verkon IP-osoitteesta (LAN ja WAN)
+# Asetus on VAARALLINEN, poista heti käytön jälkeen.
 Set-NetFirewallRule -Name "WINRM-HTTP-In-PUBLIC" -RemoteAddress Any
 # Käyttäjätietojen välittäminen etäkomennolle
 $Käyttäjä = Get-Credential
