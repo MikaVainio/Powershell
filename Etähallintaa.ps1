@@ -1,0 +1,16 @@
+﻿# Komentoja Powershell etähallinan aktivointiin ja asetusten tarkasteluun
+# Selvitetään onko Windows Remote Managemet -palvelu käynnissä
+$WrmTila = Get-Service winrma
+$WrmTila.Status
+# Selvitetään nykyiset asetukset, kysely käynnistää palvelun
+$PSRemoteasetukset = Get-PSSessionConfiguration
+$PSRemoteasetukset | Out-GridView
+# Otetaan PowerShell etähallinta käyttöön ja tehdään tarvittavat palomuuriasetukset ilman vahvistusta
+Enable-PSRemoting -Force
+# Otetaan PowerShell etähallinta käyttöön myös julkisissa verkoissa (LAN)
+Enable-PSRemoting -SkipNetworkProfileCheck
+# PowerShell etähallinnan käyttöönotto mistä tahansa julkisen verkon IP-osoitteesta (LAN ja WAN)
+Set-NetFirewallRule -Name "WINRM-HTTP-In-PUBLIC" -RemoteAddress Any
+# Käyttäjätietojen välittäminen etäkomennolle
+$Käyttäjä = Get-Credential
+Get-ADUser -filter * -Credential $Käyttäjä -Server "DC01"
