@@ -2,7 +2,7 @@
 # Kohdekoneiden palomuurin pitää sallia WMI-yhteydet
 # Ota käyttöön sääntö: Windows Management Instrumentation (WMI-In)
 # 
-# Tyhä vektori tuloksille
+# Tyhjä vektori tuloksille
 $Output = @()
 # Luetaan konetilit muuttujaan 
 $Koneet = Get-ADComputer -Filter *
