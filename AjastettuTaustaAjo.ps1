@@ -1,8 +1,8 @@
-﻿# Suoritetaan ajastetusti keskiviikkoisin
-# klo 19.30 käyttäjien dokumentointi tausta-ajona
-$Skriptipolku = "C:\Users\Administrator\Documents\Jobi.ps1"
-$PSPolku = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
-$Toiminto = New-ScheduledTaskAction -Execute $PSPolku -Argument "-NonInteractive -NoLogo -NoProfile -File $Skriptipolku"
-$Käynnistys = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Wednesday -At 19:30
-$Tehtävä = New-ScheduledTask -Action $Toiminto -Trigger $Käynnistys -Settings (New-ScheduledTaskSettingsSet)
-$Tehtävä | Register-ScheduledTask -TaskName "Ajastettu käyttäjien dokumentointi" -User "Administrator" -Password "Q2werty"
+﻿# Ajastettu tausta-ajo
+$Käynnistys = New-JobTrigger -Weekly -DaysOfWeek Wednesday -At 14:15
+Register-ScheduledJob -Name HaeKoneTilit -Trigger $Käynnistys -ScriptBlock {Get-ADComputer -Filter *}
+# Tausta-ajon tilan tarkastus ja työn ID:n selvittäminen
+Get-Job
+# Tulosten lukeminen ja pitäminen muistissa
+$TyöID = 1 # Numero edell. komennon tuloksista
+Receive-Job -Id $TyöID -Keep
