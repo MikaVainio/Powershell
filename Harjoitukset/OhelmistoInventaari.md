@@ -20,7 +20,7 @@ muodostetaan. Voit katsoa mallia tunnilla tehdystä harjoituksesta, jossa
 dokumentoimme kaikki ryhmät ja niiden jäsenten tiedot. Vastaava esimerkki löytyy
 skriptistä `DokumentoiKaikkiRyhmätJaJäsenet.ps1`
 
-< :bulb: Koneiden läpikäytiin tarvittava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`.
+> :bulb: Koneiden läpikäytiin tarvittava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`.
 Powershell-esimerkeistä löydät myös skriptin `DokumentoiAsennetutOhjelmat.ps1`,
 jolla luetaan yhden koneen asennettujen ohjelmien tiedot. CSV-tiedostoon
 tallennuksessa voit hyödyntää `Export-Csv`-komentosovelmaa.
@@ -32,5 +32,5 @@ poikkeus (virhe). Virheiden käsittelyyn on käytetty Try-Catch-Finally-rakennet
 Käytä sitä myös omassa ohjelmassasi. Älä kopioi esimerkkiä suoraan, vaan sovella
 sitä tähän tehtävään.
 
-< :warning: Muista sallia WMI-etäyhtetdet työasemien palomuureissa. Muuten
+> :warning: Muista sallia WMI-etäyhtetdet työasemien palomuureissa. Muuten
 skriptisi ei tomi.
