@@ -10,7 +10,6 @@ $Tulosvektori = @()
 $Konemäärä = 0 # Kaikken koneiden määrä
 $Tavoittamattomia = 0 # Koneiden määrä, joihin ei saatu yhteyttä
 
-
 # Luetaan konetilit muuttujaan
 $Koneet = Get-ADComputer -Filter *
 
@@ -39,19 +38,22 @@ foreach($Kone in $Koneet)
 
         # Lisätään tulosobjekti tulosvektoriin
         $Tulosvektori = $Tulosvektori + $TulosObjekti
-      }
+      } # Sisempi (ohjelmien käsittelyn) silmukka loppuu
     }
+    # Vikatilanteessa tehtävät toiminnot
     catch
     {
         # Ilmoitetaan konsolissa, ettei koneeseen saatu yhteyttä
         Write-Warning "Laitteeseen $KoneNimi ei saatu yhteyttä"
         $Tavoittamattomia = $Tavoittamattomia + 1
     }
+    # Sekä vika- että normaalitilanteessa suoritettavat toiminnot
     finally
     {
         $Konemäärä = $Konemäärä + 1
     }
-}
+} # Ulompi (koneiden käsittelyn) silmukka loppuu
+
 # Putkitetaan vektorin sisältämien objektien ominaisuudet CSV-tiedostoon
 $Tulosvektori | Export-Csv -Delimiter ";" -Encoding Unicode $Tiedosto
 
