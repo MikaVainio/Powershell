@@ -1,6 +1,6 @@
 # Dokumentoidaan kaikkien koneiden asennetut ohjelmat
 # Kohdekoneiden palomuurin pitää sallia WMI-yhteydet
-# Ota käyttöön sääntö: Windows Management Instrumentation (WMI-In)
+# Ota koneiden palomuureissa käyttöön sääntö: Windows Management Instrumentation (WMI-In)
 
 # Kysytään käyttäjältä tallennustiedoston nimi ja polku
 $Tiedosto = Read-Host "Anna luotavan CSV-tiedoston polku ja nimi"
@@ -40,14 +40,12 @@ foreach($Kone in $Koneet)
         # Lisätään tulosobjekti tulosvektoriin
         $Tulosvektori = $Tulosvektori + $TulosObjekti
       }
-
     }
     catch
     {
         # Ilmoitetaan konsolissa, ettei koneeseen saatu yhteyttä
         Write-Warning "Laitteeseen $KoneNimi ei saatu yhteyttä"
         $Tavoittamattomia = $Tavoittamattomia + 1
-
     }
     finally
     {
