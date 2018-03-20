@@ -17,7 +17,15 @@ ohelman nimi ja versio.
 
 :bulb: Vastaava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`
 Powershell-esimerkeistä löydät myös skriptin `DokumentoiAsennetutOhjelmat.ps1`,
-jolla luetaan yhden koneen asennettujen ohjelmien tiedot.
+jolla luetaan yhden koneen asennettujen ohjelmien tiedot. CSV-tiedostoon
+tallennuksessa voit hyödyntää `Export-Csv`-komentosovelmaa.
+
+`DokumentoiToimialueenBiosit.ps1`-skriptissä on käytetty tunneilla tehtyjä
+harjoituksia edistyneenpää ohjelmointitapaa. Skriptissä on varauduttu
+virhetilanteisiin. Kaikki koneet eivät kenties olekaan päällä, jolloin syntyy
+poikkeus (virhe). Virheiden käsittelyyn on käytetty Try-Catch-Finally-rakennetta.
+Käytä sitä myös omassa ohjelmassasi. Älä kopioi esimerkkiä suoraan, vaan sovella
+sitä tähän tehtävään.
 
 :warning: Muista sallia WMI-etäyhtetdet työasemien palomuureissa. Muuten
-skriptisi ei tomi. 
+skriptisi ei tomi.
