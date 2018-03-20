@@ -32,5 +32,5 @@ poikkeus (virhe). Virheiden käsittelyyn on käytetty Try-Catch-Finally-rakennet
 Käytä sitä myös omassa ohjelmassasi. Älä kopioi esimerkkiä suoraan, vaan sovella
 sitä tähän tehtävään.
 
-> :warning: Muista sallia WMI-etäyhtetdet työasemien palomuureissa. Muuten
+> :warning: Muista sallia WMI-etäyhteydet työasemien palomuureissa. Muuten
 skriptisi ei tomi. Voit sallia yhteydet myös komentoriviltä. Ohje löytyy täältä https://support.microsoft.com/en-us/help/3192130/remote-wmi-relies-on-windows-firewall-settings-incorrectly-even-if-a-t
