@@ -32,7 +32,7 @@ foreach($Kone in $Koneet)
         $TulosObjekti = New-Object -TypeName PSObject
         # Lisätään objektiin ominaisuutena KoneNimi
         $TulosObjekti | Add-Member -MemberType NoteProperty -Name Computer -Value $KoneNimi
-        # Lisätään objektiin ominaisuuksiksi ohelmien tietoja objektimuuttujasta $Jäsen
+        # Lisätään objektiin ominaisuuksiksi ohelmien tietoja objektimuuttujasta $Ohjelma
         $TulosObjekti | Add-Member -MemberType NoteProperty -Name Vendor -Value ($Ohjelma.Vendor)
         $TulosObjekti | Add-Member -MemberType NoteProperty -Name Software -Value ($Ohjelma.Name)
         $TulosObjekti | Add-Member -MemberType NoteProperty -Name Version -Value ($Ohjelma.Version)
@@ -54,7 +54,7 @@ foreach($Kone in $Koneet)
         $Konemäärä = $Konemäärä + 1
     }
 }
-# Tallentaan vektorin tiedot tiedostoon
+# Putkitetaan vektorin sisältämien objektien ominaisuudet CSV-tiedostoon
 $Tulosvektori | Export-Csv -Delimiter ";" -Encoding Unicode $Tiedosto
 
 # Ilmoitetaan tiedot skriptin käyttäjälle
