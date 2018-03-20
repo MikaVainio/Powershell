@@ -16,16 +16,16 @@ $Koneet = Get-ADComputer -Filter *
 # Käydään konetilit yksitellen läpi
 foreach($Kone in $Koneet)
 {
-# Tallennetaan koneen NetBIOS-nimi muuttujaan $KoneNimi
+    # Tallennetaan koneen NetBIOS-nimi muuttujaan $KoneNimi
     $KoneNimi = $Kone.Name
 
     # Yritetään muodostaa yhteys koneeseen ja selvittää ohjelmien tiedot
     try
     {
-    # Luetaan ohjelmien tiedot koneesta
-    $Ohjelmat = Get-WmiObject -Class Win32_Product -ComputerName $KoneNimi -ErrorAction Stop
-    # Käydään koneen ohjelmat yksitellen läpi
-    ForEach($Ohjelma in $Ohjelmat)
+      # Luetaan ohjelmien tiedot koneesta
+      $Ohjelmat = Get-WmiObject -Class Win32_Product -ComputerName $KoneNimi -ErrorAction Stop
+      # Käydään koneen ohjelmat yksitellen läpi
+      ForEach($Ohjelma in $Ohjelmat)
       {
         # Luodaan uusi PSObjekti $Tulosobjekti
         $TulosObjekti = New-Object -TypeName PSObject
