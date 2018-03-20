@@ -15,7 +15,7 @@ Asenna koneeseen Imaget-kansiosta Microsoft Visio, Excel ja Word.
 7. Luetaan CSV-tiedosto Exceliin.
 
 Koska koneessa on monta asennettua ohjelmaa, kustakin koneesta saadaan monta
-objektia. Tarvitset silloin toisen silmukan, jossa objekti lopullisesti
+Ohjelma-objektia. Tarvitset silloin toisen silmukan, jossa uusi CSV-tiedostoon tallennettava objekti lopullisesti
 muodostetaan. Voit katsoa mallia tunnilla tehdystä harjoituksesta, jossa
 dokumentoimme kaikki ryhmät ja niiden jäsenten tiedot. Vastaava esimerkki löytyy
 skriptistä `DokumentoiKaikkiRyhmätJaJäsenet.ps1`
