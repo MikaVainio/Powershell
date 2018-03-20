@@ -23,7 +23,7 @@ foreach($Kone in $Koneet)
     try
     {
     # Luetaan ohjelmien tiedot koneesta
-    $Ohjelmat = Get-WmiObject -Class Win32Win32_Product -ComputerName $KoneNimi -ErrorAction Stop
+    $Ohjelmat = Get-WmiObject -Class Win32_Product -ComputerName $KoneNimi -ErrorAction Stop
     # Käydään koneen ohjelmat yksitellen läpi
     ForEach($Ohjelma in $Ohjelmat)
       {
@@ -48,7 +48,7 @@ foreach($Kone in $Koneet)
         Write-Warning "Laitteeseen $KoneNimi ei saatu yhteyttä"
         $Tavoittamattomia = $Tavoittamattomia + 1
     }
-    
+
     # Sekä vika- että normaalitilanteessa suoritettavat toiminnot
     finally
     {
