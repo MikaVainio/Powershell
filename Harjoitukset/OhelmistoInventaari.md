@@ -16,8 +16,7 @@ Asenna koneeseen Imaget-kansiosta Microsoft Visio, Excel ja Word.
 
 Koska koneessa on monta asennettua ohjelmaa, kustakin koneesta saadaan monta
 Ohjelma-objektia. Tarvitset silloin toisen silmukan, jossa uusi CSV-tiedostoon tallennettava objekti lopullisesti
-muodostetaan. Voit katsoa mallia tunnilla tehdystä harjoituksesta, jossa
-dokumentoimme kaikki ryhmät ja niiden jäsenten tiedot. Vastaava esimerkki löytyy
+muodostetaan. Tässä uudessa objektissa pitää olla sekä koneen nimi että ojelman tiedot, jotka ovat alunperin eri objekteissa. Voit katsoa mallia tunnilla tehdystä harjoituksesta, jossa dokumentoimme kaikki ryhmät ja niiden jäsenten tiedot. Vastaava esimerkki löytyy
 skriptistä `DokumentoiKaikkiRyhmätJaJäsenet.ps1`
 
 > :bulb: Koneiden läpikäyntiin tarvittava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`.
