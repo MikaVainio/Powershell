@@ -20,7 +20,7 @@ muodostetaan. Voit katsoa mallia tunnilla tehdystä harjoituksesta, jossa
 dokumentoimme kaikki ryhmät ja niiden jäsenten tiedot. Vastaava esimerkki löytyy
 skriptistä `DokumentoiKaikkiRyhmätJaJäsenet.ps1`
 
-> :bulb: Koneiden läpikäytiin tarvittava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`.
+> :bulb: Koneiden läpikäyntiin tarvittava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`.
 Powershell-esimerkeistä löydät myös skriptin `DokumentoiAsennetutOhjelmat.ps1`,
 jolla luetaan yhden koneen asennettujen ohjelmien tiedot. CSV-tiedostoon
 tallennuksessa voit hyödyntää `Export-Csv`-komentosovelmaa.
