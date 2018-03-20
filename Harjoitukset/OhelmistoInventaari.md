@@ -15,7 +15,13 @@ ohelman nimi ja versio.
 6. Putkitetaan vektori CSV-tiedostoon.
 7. Luetaan CSV-tiedosto Exceliin.
 
-:bulb: Vastaava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`
+Koska koneessa on monta asennettua ohjelmaa, kustakin koneesta saadaan monta
+objektia. Tarvitset silloin toisen silmukan, jossa objekti lopullisesti
+muodostetaan. Voit katsoa mallia tunnilla tehdystä harjoituksesta, jossa
+dokumentoimme kaikki ryhmät ja niiden jäsenten tiedot. Vastaava esimerkki löytyy
+skriptistä `DokumentoiKaikkiRyhmätJaJäsenet.ps1`
+
+:bulb: Koneiden läpikäytiin tarvittava rutiini löytyy Powershell-esimerkeistä nimellä `DokumentoiToimialueenBiosit.ps1`.
 Powershell-esimerkeistä löydät myös skriptin `DokumentoiAsennetutOhjelmat.ps1`,
 jolla luetaan yhden koneen asennettujen ohjelmien tiedot. CSV-tiedostoon
 tallennuksessa voit hyödyntää `Export-Csv`-komentosovelmaa.
