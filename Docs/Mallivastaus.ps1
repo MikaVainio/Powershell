@@ -40,6 +40,7 @@ foreach($Kone in $Koneet)
         $Tulosvektori = $Tulosvektori + $TulosObjekti
       } # Sisempi (ohjelmien käsittelyn) silmukka loppuu
     }
+
     # Vikatilanteessa tehtävät toiminnot
     catch
     {
@@ -47,12 +48,14 @@ foreach($Kone in $Koneet)
         Write-Warning "Laitteeseen $KoneNimi ei saatu yhteyttä"
         $Tavoittamattomia = $Tavoittamattomia + 1
     }
+    
     # Sekä vika- että normaalitilanteessa suoritettavat toiminnot
     finally
     {
-        $Konemäärä = $Konemäärä + 1
+        $Konemäärä = $Konemäärä +
     }
-} # Ulompi (koneiden käsittelyn) silmukka loppuu
+
+  } # Ulompi (koneiden käsittelyn) silmukka loppuu
 
 # Putkitetaan vektorin sisältämien objektien ominaisuudet CSV-tiedostoon
 $Tulosvektori | Export-Csv -Delimiter ";" -Encoding Unicode $Tiedosto
