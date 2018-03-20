@@ -22,23 +22,26 @@ foreach($Kone in $Koneet)
     # Yritetään muodostaa yhteys koneeseen ja selvittää ohjelmien tiedot
     try
     {
-      # Luetaan ohjelmien tiedot koneesta
-      $Ohjelmat = Get-WmiObject -Class Win32_Product -ComputerName $KoneNimi -ErrorAction Stop
-      # Käydään koneen ohjelmat yksitellen läpi
-      ForEach($Ohjelma in $Ohjelmat)
-      {
-        # Luodaan uusi PSObjekti $Tulosobjekti
-        $TulosObjekti = New-Object -TypeName PSObject
-        # Lisätään objektiin ominaisuutena KoneNimi
-        $TulosObjekti | Add-Member -MemberType NoteProperty -Name Computer -Value $KoneNimi
-        # Lisätään objektiin ominaisuuksiksi ohelmien tietoja objektimuuttujasta $Ohjelma
-        $TulosObjekti | Add-Member -MemberType NoteProperty -Name Vendor -Value ($Ohjelma.Vendor)
-        $TulosObjekti | Add-Member -MemberType NoteProperty -Name Software -Value ($Ohjelma.Name)
-        $TulosObjekti | Add-Member -MemberType NoteProperty -Name Version -Value ($Ohjelma.Version)
+        # Luetaan ohjelmien tiedot koneesta
+        $Ohjelmat = Get-WmiObject -Class Win32_Product -ComputerName $KoneNimi -ErrorAction Stop
+        # Käydään koneen ohjelmat yksitellen läpi
+        ForEach($Ohjelma in $Ohjelmat)
+        {
+            # Luodaan uusi PSObjekti $Tulosobjekti
+            $TulosObjekti = New-Object -TypeName PSObject
+            
+            # Lisätään objektiin ominaisuutena KoneNimi
+            $TulosObjekti | Add-Member -MemberType NoteProperty -Name Computer -Value $KoneNimi
+            
+            # Lisätään objektiin ominaisuuksiksi ohjelmien tietoja objektimuuttujasta $Ohjelma
+            $TulosObjekti | Add-Member -MemberType NoteProperty -Name Vendor -Value ($Ohjelma.Vendor)
+            $TulosObjekti | Add-Member -MemberType NoteProperty -Name Software -Value ($Ohjelma.Name)
+            $TulosObjekti | Add-Member -MemberType NoteProperty -Name Version -Value ($Ohjelma.Version)
 
-        # Lisätään tulosobjekti tulosvektoriin
-        $Tulosvektori = $Tulosvektori + $TulosObjekti
-      } # Sisempi (ohjelmien käsittelyn) silmukka loppuu
+            # Lisätään tulosobjekti tulosvektoriin
+            $Tulosvektori = $Tulosvektori + $TulosObjekti
+            
+        } # Sisempi (ohjelmien käsittelyn) silmukka loppuu
     }
 
     # Vikatilanteessa tehtävät toiminnot
