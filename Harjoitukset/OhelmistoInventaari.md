@@ -9,8 +9,7 @@ Asenna koneeseen Imaget-kansiosta Microsoft Visio, Excel ja Word.
 1. Luetaan toimialueen konetilitiedot hakemistopalvelimelta (AD).
 2. Muodostetaan silmukassa yhteys jokaiseen koneeseen.
 3. Luetaan koneeseen asennetut ohjelmat
-4. Muodostetaan uusi objekti, jonka ominaisuuksiksi annetaan koneen nimi,
-ohelman nimi ja versio.
+4. Muodostetaan toisessa simukassa uusi objekti, jonka ominaisuuksiksi annetaan koneen nimi, ohelman nimi ja versio.
 5. Tallenetaan luotu objekti vektoriin.
 6. Putkitetaan vektori CSV-tiedostoon.
 7. Luetaan CSV-tiedosto Exceliin.
