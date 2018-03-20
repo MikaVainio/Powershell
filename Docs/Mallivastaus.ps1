@@ -55,7 +55,7 @@ foreach($Kone in $Koneet)
         $Konemäärä = $Konemäärä + 1
     }
 
-  } # Ulompi (koneiden käsittelyn) silmukka loppuu
+} # Ulompi (koneiden käsittelyn) silmukka loppuu
 
 # Putkitetaan vektorin sisältämien objektien ominaisuudet CSV-tiedostoon
 $Tulosvektori | Export-Csv -Delimiter ";" -Encoding Unicode $Tiedosto
