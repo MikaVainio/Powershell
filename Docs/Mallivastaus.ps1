@@ -52,7 +52,7 @@ foreach($Kone in $Koneet)
     # Sekä vika- että normaalitilanteessa suoritettavat toiminnot
     finally
     {
-        $Konemäärä = $Konemäärä +
+        $Konemäärä = $Konemäärä + 1
     }
 
   } # Ulompi (koneiden käsittelyn) silmukka loppuu
