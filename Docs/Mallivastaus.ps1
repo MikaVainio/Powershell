@@ -14,7 +14,7 @@ $Tavoittamattomia = 0 # Koneiden määrä, joihin ei saatu yhteyttä
 $Koneet = Get-ADComputer -Filter *
 
 # Käydään konetilit yksitellen läpi
-foreach($Kone in $Koneet)
+Foreach($Kone in $Koneet)
 {
     # Tallennetaan koneen NetBIOS-nimi muuttujaan $KoneNimi
     $KoneNimi = $Kone.Name
@@ -25,7 +25,7 @@ foreach($Kone in $Koneet)
         # Luetaan ohjelmien tiedot koneesta
         $Ohjelmat = Get-WmiObject -Class Win32_Product -ComputerName $KoneNimi -ErrorAction Stop
         # Käydään koneen ohjelmat yksitellen läpi
-        ForEach($Ohjelma in $Ohjelmat)
+        Foreach($Ohjelma in $Ohjelmat)
         {
             # Luodaan uusi PSObjekti $Tulosobjekti
             $TulosObjekti = New-Object -TypeName PSObject
