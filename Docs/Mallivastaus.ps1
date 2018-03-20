@@ -62,4 +62,4 @@ $Tulosvektori | Export-Csv -Delimiter ";" -Encoding Unicode $Tiedosto
 
 # Ilmoitetaan tiedot skriptin käyttäjälle
 Write-Warning "Asennetut ohjelmat listattu tiedostoon $Tiedosto"
-Write-Warning "Käsiteltiin $Konemäärä tietokonetta. Yhteyttä ei saatu $Tavoittamattomia koneeseen"
+Write-Warning "Käsiteltiin yhteensä $Konemäärä tietokonetta. Yhteyttä ei saatu $Tavoittamattomia koneeseen"
