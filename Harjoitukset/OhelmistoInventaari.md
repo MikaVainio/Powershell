@@ -1,7 +1,8 @@
 # Toimialueen työasemiin asennettujen ohjelmien inventointi
 
 Tehtävänäsi on inventoida toimialueen palvelimiin ja työasemiin asennetut
-ohjelmat.
+ohjelmat. Luo harjoitusta varten uusi työasema WS44 ja liitä se toimialueeseen.
+Asenna koneeseen Imaget-kansiosta Microsoft Visio, Excel ja Word.
 
 ## Tarvittavat toimenpiteet
 
@@ -18,4 +19,5 @@ ohelman nimi ja versio.
 Powershell-esimerkeistä löydät myös skriptin `DokumentoiAsennetutOhjelmat.ps1`,
 jolla luetaan yhden koneen asennettujen ohjelmien tiedot.
 
- 
+:warning: Muista sallia WMI-etäyhtetdet työasemien palomuureissa. Muuten
+skriptisi ei tomi. 
