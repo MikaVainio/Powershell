@@ -2,7 +2,7 @@
 # Selvitetään onko Windows Remote Managemet -palvelu käynnissä
 $WrmTila = Get-Service winrm
 $WrmTila.Status
-# Selvitetään nykyiset asetukset, kysely käynnistää palvelun kun komento annetaan koneen konsolilta
+# Selvitetään nykyiset asetukset, kysely käynnistää palvelun, kun komento annetaan hallittavan koneen konsolilta
 $PSRemoteasetukset = Get-PSSessionConfiguration
 $PSRemoteasetukset | Out-GridView
 # Otetaan PowerShell-etähallinta käyttöön ja tehdään tarvittavat palomuuriasetukset ilman vahvistusta
