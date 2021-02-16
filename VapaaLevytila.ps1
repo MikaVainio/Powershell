@@ -1,5 +1,5 @@
 ﻿# Luetaan koneen kaikkien levyjen vapaa tila (MB)
- # Vaatii vähintään Powershell version 5.0
+ # Vaatii vähintään Powershell version 5.0, jos käytät suomenkielistä Windowsia, laskureiden nimet pitää kirjoittaa suomeksi!
 class LooginenLevy
 {
     [String]$Levyosio
@@ -18,3 +18,5 @@ foreach($Mittaus in $Mittaukset)
     $OutPut = $OutPut + $Olio
 }
 $OutPut | Out-GridView
+
+# Esimerkin levytilalaskuri on suomeksi "\Looginen levy(*)\Vapaa tila"
