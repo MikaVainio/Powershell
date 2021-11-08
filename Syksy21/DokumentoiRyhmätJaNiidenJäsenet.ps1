@@ -1,4 +1,4 @@
-﻿# Kerätään kaikki AD:n ryhmät ja niiden jäsenet olioina vektoriin
+﻿# Kerätään kaikki AD:n ryhmät ja niiden jäsenet olioina vektoriin ja tehdään siitä CSV-tiedosto
 
 # Määritellään uusi luokka, johon tallennetaan ryhmän ja jäsenen tiedot
 
@@ -14,6 +14,7 @@ class GroupAndMember
     [String]$MemberObjectClass
 }
 
+# Kysytään käyttäjältä tiedoston nimi ja polku
 $Tiedosto = Read-Host -Prompt "Anna tiedostopolku ja nimi"
 
 # Tarkitetaan, onko tiedosto tyhjä, jos on, tallennetaan documents-kansioon nimellä GroupsAndUsers.csv
