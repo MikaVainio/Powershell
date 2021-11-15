@@ -5,6 +5,7 @@ $WrmTila.Status
 # Selvitetään nykyiset asetukset, kysely käynnistää palvelun, kun komento annetaan hallittavan koneen konsolilta
 $PSRemoteasetukset = Get-PSSessionConfiguration
 $PSRemoteasetukset | Out-GridView
+# Jos palvelu ei käynnisty vaan vaatii WinRM-palvelun konfigurointia, seuraava komento huolehtii palvelun käynnistämisestä
 # Otetaan PowerShell-etähallinta käyttöön ja tehdään tarvittavat palomuuriasetukset ilman vahvistusta
 Enable-PSRemoting -Force
 # Otetaan PowerShell-etähallinta käyttöön myös julkisissa verkoissa (LAN) VAARALLINEN asetus
