@@ -14,15 +14,15 @@ class NicInfo
 
 
 
-# Esittelyfunktio, jossa määritellään komentosovelman parametrit
-Function Get-EthernetNIC 
+# Esittelyfunktio, jossa määritellään komentosovelman parametrit, näkyy ulospäin (public)
+function Get-EthernetNIC # Nimi muodostetaan sääntöjen mukaan: Verbi-Objekti
 {
     [CmdletBinding()] # Laajennettuparametrimäärittely 
-    Param
+    param
     (
         # Parametri on pakollinen ja  se voi saada arvonsa putkittamalla
         [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
-        [String[]]$ComputerName # parametri on määritelty merkkijonovektoriksi -> arvona useita koneita 
+        [String[]]$ComputerName # parametri on määritelty merkkijonovektoriksi -> arvona voi olla useita koneita 
     )
 
     # Lohko jossa määritellään ulospäin näkymätön (private) työfunktio
@@ -75,6 +75,7 @@ Function Get-EthernetNIC
         # Luodaan ja käynnistetään ajastinolio käyttöjärjestelmän luokasta
         $Timer =  [system.diagnostics.stopwatch]::StartNew()
 
+        # Käydään parametrina annetut koneet yksitellen läpi
         foreach ($Machine in $ComputerName)
             {
                 ScanNics -ComputerName $Machine # kutsutaan työfuntiota
