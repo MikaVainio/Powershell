@@ -15,7 +15,7 @@ function <komento-sovelma> # Nimi muodostetaan sääntöjen mukaan: Verbi-Objekt
     (
         # Parametri on pakollinen ja  se voi saada arvonsa putkittamalla
         [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
-        [<Tietotyyppi>]$<ParametrinNimi> 
+        [<Tietotyyppi>]$<ParametrinNimi> # Huom! yleensä vektori, johon voi tallentaa useita arvoja, esim. [string[]]$ComputerName
     )
 
     # Lohko, jossa määritellään ulospäin näkymätön (private) työfunktio
