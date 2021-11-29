@@ -15,10 +15,10 @@ class NicInfo
 
 
 # Esittelyfunktio, jossa määritellään komentosovelman parametrit
-function Get-EthernetNIC 
+Function Get-EthernetNIC 
 {
     [CmdletBinding()] # Laajennettuparametrimäärittely 
-    param
+    Param
     (
         # Parametri on pakollinen ja  se voi saada arvonsa putkittamalla
         [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
@@ -72,6 +72,9 @@ function Get-EthernetNIC
     # Lohko, jossa kutsutaan työfunktiota ScanNics esittelyfunktion parametrina annetuissa koneissa
     PROCESS 
     {
+        # Luodaan ja käynnistetään ajastinolio käyttöjärjestelmän luokasta
+        $Timer =  [system.diagnostics.stopwatch]::StartNew()
+
         foreach ($Machine in $ComputerName)
             {
                 ScanNics -ComputerName $Machine # kutsutaan työfuntiota
@@ -81,7 +84,9 @@ function Get-EthernetNIC
     # Lohko, joka suoritetaan työfunktion jälkeen
     END 
     {
-        Write-Warning "NIC Information scanned"
+        # Pysäytetään ajastin ja kerrotaan paljonko aikaa skannaukseen meni
+        $Timer.Stop()
+        $ElapsedTime = $Timer.Elapsed.TotalSeconds
+        Write-Warning "NIC Information scanned in $ElapsedTime seconds"
     }
 }
-
