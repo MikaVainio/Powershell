@@ -15,21 +15,20 @@ function <komento-sovelma> # Nimi muodostetaan sääntöjen mukaan: Verbi-Objekt
     (
         # Parametri on pakollinen ja  se voi saada arvonsa putkittamalla
         [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
-        [<Tietotyyppi>]$<parametri> # parametri on määritelty merkkijonovektoriksi -> arvona voi olla useita koneita 
+        [<Tietotyyppi>]$<ParametrinNimi> 
     )
 
     # Lohko, jossa määritellään ulospäin näkymätön (private) työfunktio
     BEGIN 
     {
-        # Työfunktio, jonka avulla tarvittavat tiedot hankitaan
+        # Työfunktio, jonka avulla haetaan tarvittavat tiedot ja luodaan uusi objekti
         function <työfunktio>
         {
             # Työfunktion parametrit
             param
             (
-                [<Tietotyyppi>]$<parameri>
+                [<Tietotyyppi>]$<ParametrinNimi>
             )
-
 
             # Tyhjä vektori tuloksia varten
             $Output = @()
@@ -40,24 +39,21 @@ function <komento-sovelma> # Nimi muodostetaan sääntöjen mukaan: Verbi-Objekt
 
             # Lisätään objekti vektoriin
             $Output = $Output + $<olio>
-            }
  
-            # Tulostetaan tiedot
+            # Tulostetaan tiedot vektorista konsolille
             Write-Output $Output
         }
-    
-    
-
-    # Lohko, jossa kutsutaan työfunktiota ScanNics esittelyfunktion parametrina annetuissa koneissa
+   
+    # Lohko, jossa kutsutaan työfunktiota esittelyfunktion parametrina annetuissa objekteissa
     PROCESS 
     {
         # Luodaan ja käynnistetään ajastinolio käyttöjärjestelmän luokasta
         $Timer =  [system.diagnostics.stopwatch]::StartNew()
 
         # Käydään parametrina annetut objektit yksitellen läpi
-        foreach ($<jäsen> in $<lista>)
+        foreach ($<jäsen> in $<ParametrinNimi>)
             {
-                <työfunktio> -<parametri> $<arvo> # kutsutaan työfuntiota
+                <työfunktio> -<ParametrinNimi> $<jäsen> # kutsutaan työfuntiota
             }
     }
 
