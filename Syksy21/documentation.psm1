@@ -3,26 +3,29 @@
 # Luokka tulosobjektien malliksi
 class NicInfo
 {
-    [string]$Host
-    [string]$NICName
-    [string]$AdapterType
-    [string]$MACAddress
-    [string[]]$IPAddress
-    [bool]$DHCPEnabled
-    [uint64]$Speed
+    [string]$Host # Tietokoneen nimi
+    [string]$NICName # Verkkokortin nimi
+    [string]$AdapterType # Verkkokortin tyyppi
+    [string]$MACAddress # Fyysinen osoite
+    [string[]]$IPAddress # Looginen osoite
+    [bool]$DHCPEnabled # Osoite saatu DHCP-palvelimelta
+    [uint64]$Speed # Verkkokortin nopeus Mb/s
 }
 
 
 
 # Esittelyfunktio, jossa määritellään komentosovelman parametrit
-function Get-EthernetNIC # Esittelyfunktio 
+function Get-EthernetNIC 
 {
-[CmdletBinding()] # Laajennettuparametrimäärittely 
-param
+    [CmdletBinding()] # Laajennettuparametrimäärittely 
+    param
     (
-    [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
-    [String[]]$ComputerName # parametri on määritelty merkkijonovektoriksi
+        # Parametri on pakollinen ja  se voi saada arvonsa putkittamalla
+        [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
+        [String[]]$ComputerName # parametri on määritelty merkkijonovektoriksi -> arvona useita koneita 
     )
+
+    # Lohko jossa määritellään ulospäin näkymätön (private) työfunktio
     BEGIN 
     {
         # Työfunktio, jonka avulla tarvittavat tiedot hankitaan
@@ -41,11 +44,12 @@ param
             # Käydään löydetyt verkkokortit yksitellen läpi
             foreach($EthernetCard in $EthernetCards)
             {
-                $CardId = $EthernetCard.DeviceID 
+                $CardId = $EthernetCard.DeviceID # Verkkokortin numerotunniste
 
-                $IPInfo = Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object {$_.Index -eq $CardId}
+                # Haetaan verkkokortin IP-asetustiedot
+                $IPInfo = Get-WmiObject -Class Win32_NetworkAdapterConfiguration -ComputerName $ComputerName | Where-Object {$_.Index -eq $CardId}
 
-
+                # Luodaan uusi NicIfo-objekti ja määritellään sen ominaisuudet
                 $NicData = [NicInfo]::new()
                 $NicData.Host = $ComputerName
                 $NicData.NICName = $EthernetCard.Name
@@ -55,20 +59,29 @@ param
                 $NicData.IPAddress = $IPInfo.IPAddress
                 $NicData.DHCPEnabled = $IPInfo.DHCPEnabled
 
+                # Lisätään objekti vektoriin
                 $NICs = $NICs + $NicData
             }
  
+            # Tulostetaan tiedot
             Write-Output $NICs
         }
     
     }
 
+    # Lohko, jossa kutsutaan työfunktiota ScanNics esittelyfunktion parametrina annetuissa koneissa
     PROCESS 
     {
-    foreach ($Machine in $ComputerName)
-        {
-            ScanNics -ComputerName $Machine # kutsutaan työfuntiota
-        }
+        foreach ($Machine in $ComputerName)
+            {
+                ScanNics -ComputerName $Machine # kutsutaan työfuntiota
+            }
     }
-    END {}
+
+    # Lohko, joka suoritetaan työfunktion jälkeen
+    END 
+    {
+        Write-Warning "NIC Information scanned"
+    }
 }
+
