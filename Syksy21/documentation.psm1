@@ -3,7 +3,7 @@
 # Luokka tulosobjektien malliksi
 class NicInfo
 {
-    [string]$ComputerName
+    [string]$Host
     [string]$NICName
     [string]$AdapterType
     [string]$MACAddress
@@ -15,13 +15,13 @@ class NicInfo
 
 
 # Esittelyfunktio, jossa määritellään komentosovelman parametrit
-Function Get-EthernetNIC # Esittelyfunktio 
+function Get-EthernetNIC # Esittelyfunktio 
 {
 [CmdletBinding()] # Laajennettuparametrimäärittely 
-Param
+param
     (
     [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
-    [String[]]$Computername # parametri on määritelty merkkijonovektoriksi
+    [String[]]$ComputerName # parametri on määritelty merkkijonovektoriksi
     )
     BEGIN 
     {
@@ -29,14 +29,14 @@ Param
         function ScanNics
         {
             # Työfunktion parametrit
-            param([string]$Computer)
+            param([string]$ComputerName)
 
 
             # Tyhjä vektori tuloksia varten
             $NICs = @()
 
             # Haetaan koneen Ethernet-verkkokortit
-            $EthernetCards = Get-WmiObject -Class  Win32_NetworkAdapter -ComputerName $Computer | Where-Object {$_.AdapterType -Match "Ethernet"}
+            $EthernetCards = Get-WmiObject -Class  Win32_NetworkAdapter -ComputerName $ComputerName | Where-Object {$_.AdapterType -Match "Ethernet"}
 
             # Käydään löydetyt verkkokortit yksitellen läpi
             foreach($EthernetCard in $EthernetCards)
@@ -47,6 +47,7 @@ Param
 
 
                 $NicData = [NicInfo]::new()
+                $NicData.Host = $ComputerName
                 $NicData.NICName = $EthernetCard.Name
                 $NicData.AdapterType =$EthernetCard.AdapterType
                 $NicData.MACAddress = $EthernetCard.MACAddress
@@ -64,9 +65,9 @@ Param
 
     PROCESS 
     {
-    foreach ($Computer in $ComputerName)
+    foreach ($Machine in $ComputerName)
         {
-        ScanNics -computername $Computer # kutsutaan työfuntiota
+            ScanNics -ComputerName $Machine # kutsutaan työfuntiota
         }
     }
     END {}
