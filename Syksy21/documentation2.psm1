@@ -29,6 +29,18 @@ class GroupAndMember
     [String]$MemberObjectClass
 }
 
+# Luokka kone- ja sovellustiedoille
+class InstalledApp
+{
+    [string]$ComputerName 
+    [string]$AppName
+    [string]$AppVendor
+    [string]$AppVersion
+    [string]$AppLanguage
+}
+
+
+
 # FUNKTIOT
 #------------------------------------------------------------------------------------------------
 
@@ -192,3 +204,72 @@ function Get-ADGroupsAndMembers # Nimi muodostetaan sääntöjen mukaan: Verbi-O
     } # END PÄÄTTYY
 
 } # ESITTELYFUNKTIO PÄÄTTYY
+
+# 3. Komentosovelma, jolla tehdää ohjelmistoinventaari
+# Funktio on luotu Visual Studio Codessa, joka ehdottaa myös ohjlmarakenteita
+# Esittelyfunktio, runko saadaan suoraan function-advanced-rakenteesta
+function Get-InstalledApp {
+    [CmdletBinding()]
+    param(
+    [Parameter(Mandatory=1, ValueFromPipeline=1, ValueFromPipelineByPropertyName=1)]
+    [SecureString]$Credentials
+    )
+    
+    
+    begin {
+        # Työfunktion määrittely, saadaan function-rakenteesta
+        function CreateApplist 
+        {
+            param (
+                [SecureString]$Credentials
+            )
+            
+            $Output = @()
+
+            # Haetaan työasemat, jätetään DC-koneet haun ulkopuolelle, koska skripti suoritetaan AD-koneelta
+            $WSList = Get-ADComputer -Filter * -SearchBase "CN=Computers,DC=firma,DC=intra"
+
+            # Käydään työasemat yksitellen läpi
+            foreach($WS in $WSList)
+            {
+                 # Luodaan lista työaseman sovelluksista
+                $AppList = Get-WmiObject -Class Win32_product -ComputerName $WS.DNSHostName -Credential $Credentials
+
+                # Haetaan yksittäisen sovelluksen tiedot ja luodaan niiden pohjalta uusi olio
+                foreach($App in $AppList)
+                {
+                    # Luodaan uusi olio ja määritellään ominaisuuksien arvot
+                    $installedApp = [InstalledApp]::new()
+                    $installedApp.ComputerName = $WS.DNSHostName
+                    $installedApp.AppName = $App.Name
+                    $installedApp.AppVendor = $App.Vendor
+                    $installedApp.AppVersion = $App.Version
+                    $installedApp.AppLanguage = $App.Language
+
+                    # Lisätään olio vektoriin
+                    $Output = $Output + $installedApp
+                }
+            }
+
+            Write-Output $Output
+        }
+        
+    }
+    
+    process 
+    {
+        # Luodaan ja käynnistetään ajastinolio käyttöjärjestelmän luokasta
+        $Timer =  [system.diagnostics.stopwatch]::StartNew()
+
+        # Kutsutaan työfunktiota
+        CreateAppList($Credentials)
+    }
+    
+    end 
+    {
+        # Pysäytetään ajastin ja kerrotaan paljonko aikaa skannaukseen meni
+        $Timer.Stop()
+        $ElapsedTime = $Timer.Elapsed.TotalSeconds
+        Write-Warning "Apps scanned in $ElapsedTime seconds"
+    }
+}
