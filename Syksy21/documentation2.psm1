@@ -367,7 +367,7 @@ function Get-HardWareInfo {
         $Timer = [system.diagnostics.stopwatch]::StartNew()
 
         # Kutsutaan työfunktiota
-        CreateHWList($Credentials, $WMIObjectClass )
+        CreateHWList($Credentials, $WMIObjectClass)
        
     }
     
