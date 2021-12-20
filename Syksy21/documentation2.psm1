@@ -375,6 +375,6 @@ function Get-HardWareInfo {
         # Pysäytetään ajastin ja kerrotaan paljonko aikaa skannaukseen meni
         $Timer.Stop()
         $ElapsedTime = $Timer.Elapsed.TotalSeconds
-        Write-Warning "Apps scanned in $ElapsedTime seconds"
+        Write-Warning "Hardware scanned in $ElapsedTime seconds"
     }
 }
