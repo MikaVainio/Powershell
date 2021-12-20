@@ -337,7 +337,7 @@ function Get-HardWareInfo {
                         $Output = $Output + $biosInfo
                     }
 
-                    # Jos parametrina on luodaan olio keskusmuistin tiedoista
+                    # Jos parametrina on Win32_PhysicalMemory, luodaan olio keskusmuistin tiedoista
 
                     if ($WMIObjectClass -eq 'Win32_PhysicalMemory') {
                         $ramInfo = [RAMInfo]::new()
