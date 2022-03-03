@@ -81,3 +81,7 @@ foreach($App in $StoreApps)
 Write-Warning "Scanned $Counter32bit 32-bit applications"
 Write-Warning "Scanned $Counter64bit 64-bit applications"
 Write-Warning "Scanned $CounterStore Microsoft Store applications"
+
+Read-Host "Hit Enter to continue"
+
+Write-Output $ResultSet
