@@ -1,4 +1,8 @@
+# ENHANCED INSTALLED APPLICATION INVENTORY
+<# This script will scan the registry to find installed programs by detecting unistaller information or
+package information of Microsoft Store application entries. The Script will not detect any portable software packages #>
 
+# Class definitions
 class InstalledApp
 {
    # Properties
