@@ -1,6 +1,3 @@
-# Enhanced application inventory script
-
-# Class definition for application objects
 
 class InstalledApp
 {
@@ -18,6 +15,7 @@ $ResultSet = @()
 # Reset application counters
 $Counter32bit = 0
 $Counter64bit = 0
+$CounterStore = 0
 
 # Read registry entries for 32-bit applications
 $App32 = Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
@@ -59,7 +57,27 @@ foreach($App in $App64)
     $Counter64bit ++
 }
 
+$StoreApps = Get-ItemProperty "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\Repository\Packages\*"
+
+# Create a new object for every Windows Store app and set properties
+foreach($App in $StoreApps)
+{
+    $installedApp = [InstalledApp]::new()
+    $installedApp.Architecture = "Microsoft Store"
+    $installedApp.Name = $App.DisplayName
+    $installedApp.Version = $App.DisplayVersion
+    $installedApp.Vendor = $App.Publisher
+    $installedApp.InstallDate = $App.InstallDate
+
+    # Add the object to the result array
+    $ResultSet += $installedApp
+
+    # Increment the counter of 64-bit apps
+    $CounterStore ++
+}
+
+
+
 Write-Warning "Scanned $Counter32bit 32-bit applications"
 Write-Warning "Scanned $Counter64bit 64-bit applications"
-
-Write-Output $ResultSet
+Write-Warning "Scanned $CounterStore Microsoft Store applications"
